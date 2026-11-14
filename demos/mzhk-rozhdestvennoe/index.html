@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>МЖК Рождественное — фильм</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=block');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #f2ebe0; --ink: #1a1410; --red: #8c1c13; --gold: #c19a4a; --cream: #faf3e8; --shadow: rgba(26,20,16,0.4);
+  }
+  body {
+    background: #e8e0d0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem; font-family: 'Noto Serif', 'Times New Roman', serif; color: var(--ink);
+    background-image: radial-gradient(ellipse at 20% 30%, rgba(193,154,74,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(140,28,19,0.05) 0%, transparent 50%);
+  }
+  .page {
+    max-width: 1000px; width: 100%; background: var(--paper); position: relative;
+    box-shadow: 0 0 0 1px var(--ink), 0 0 0 8px var(--paper), 0 0 0 10px var(--ink), 0 8px 40px var(--shadow);
+    padding: 3rem 2.5rem;
+  }
+  .corner { position: absolute; width: 48px; height: 48px; }
+  .corner-tl { top: 1rem; left: 1rem; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+  .corner-tr { top: 1rem; right: 1rem; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+  .corner-bl { bottom: 1rem; left: 1rem; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+  .corner-br { bottom: 1rem; right: 1rem; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+  .header-strip {
+    border-bottom: 2px solid var(--ink); padding-bottom: 0.75rem; margin-bottom: 2.5rem; display: flex;
+    justify-content: space-between; align-items: flex-end; font-size: 0.7rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .header-strip .right { font-style: italic; color: var(--red); letter-spacing: 0.15em; }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; align-items: center; }
+  .poster-block {
+    aspect-ratio: 2/3; max-width: 380px; width: 100%; justify-self: center; position: relative; overflow: hidden;
+    border: 2px solid var(--ink); background: linear-gradient(160deg, #2c2416 0%, #4a3a28 40%, #1a1410 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .poster-block::after {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+  }
+  .poster-inner { padding: 2rem; text-align: center; position: relative; z-index: 1; }
+  .poster-inner .label {
+    font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900;
+    color: var(--gold); letter-spacing: 0.2em; text-shadow: 3px 3px 6px rgba(0,0,0,0.6); line-height: 1.1;
+  }
+  .poster-inner .label-sub {
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem); color: rgba(250,243,232,0.5); letter-spacing: 0.5em;
+    text-transform: uppercase; margin-top: 1rem; border-top: 1px solid rgba(250,243,232,0.2);
+    border-bottom: 1px solid rgba(250,243,232,0.2); padding: 0.5rem 0; display: inline-block;
+  }
+  .poster-inner .year {
+    position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); font-size: 0.65rem;
+    color: rgba(250,243,232,0.2); letter-spacing: 0.4em;
+  }
+  .text-side { display: flex; flex-direction: column; gap: 1.2rem; }
+  .film-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900;
+    line-height: 1.15; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink);
+  }
+  .film-title .accent { color: var(--red); }
+  .film-tagline {
+    font-style: italic; font-size: clamp(1rem, 2vw, 1.25rem); color: var(--gold);
+    border-left: 3px solid var(--red); padding-left: 1rem;
+  }
+  .film-desc { font-size: 0.9rem; line-height: 1.7; color: var(--ink); }
+  .film-desc p + p { margin-top: 0.75rem; }
+  .details {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--ink);
+    margin: 2rem 0 1.5rem; border: 1px solid var(--ink);
+  }
+  .detail-item { background: var(--paper); padding: 1rem 0.75rem; text-align: center; }
+  .detail-label {
+    font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink);
+    opacity: 0.6; margin-bottom: 0.3rem;
+  }
+  .detail-value { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--red); }
+  .quote-block { text-align: center; padding: 1.5rem 0; margin: 1.5rem 0 0.5rem; position: relative; }
+  .quote-block::before, .quote-block::after {
+    content: ''; display: block; width: 60px; height: 1px; background: var(--gold); margin: 0 auto;
+  }
+  .quote-block::after { margin-top: 1.5rem; }
+  .quote-block::before { margin-bottom: 1.5rem; }
+  .quote-block blockquote {
+    font-style: italic; font-size: 1.05rem; color: var(--red); max-width: 500px; margin: 0 auto; line-height: 1.6;
+  }
+  .quote-block blockquote::before { content: '«'; }
+  .quote-block blockquote::after { content: '»'; }
+  .bottom-bar {
+    display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem;
+    border-top: 2px solid var(--ink); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .bottom-bar .prod { color: var(--gold); letter-spacing: 0.15em; font-style: italic; }
+  .bottom-bar .status { color: var(--red); font-weight: 700; }
+  @media (max-width: 700px) {
+    .page { padding: 1.5rem 1rem; }
+    .hero { grid-template-columns: 1fr; gap: 1.5rem; }
+    .poster-block { max-width: 260px; }
+    .details { grid-template-columns: 1fr 1fr; }
+    .corner { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+  <div class="header-strip">
+    <span>Кинематографъ</span>
+    <span class="right">художественный фильм</span>
+  </div>
+  <div class="hero">
+    <div class="poster-block">
+      <div class="poster-inner">
+        <div class="label">МЖК<br>Рождест<br>венное</div>
+        <div class="label-sub">кинокартина</div>
+        <span class="year">ANNO MMXXV</span>
+      </div>
+    </div>
+    <div class="text-side">
+      <div class="film-title">
+        МЖК <span class="accent">Рождественное</span>
+      </div>
+      <div class="film-tagline">
+        История, написанная в рифму
+      </div>
+      <div class="film-desc">
+        <p>
+          Жилой комплекс на окраине большого города.
+          Люди, чьи судьбы переплелись в тесных коридорах
+          коммуналок и на широких лестничных пролётах.
+          Здесь рождаются и умирают, ссорятся и мирятся,
+          мечтают и разочаровываются.
+        </p>
+        <p>
+          «МЖК Рождественное» — это притча о доме,
+          который стал для своих обитателей и крепостью,
+          и клеткой. О времени, когда старый мир рухнул,
+          а новый ещё не построили.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="details">
+    <div class="detail-item">
+      <div class="detail-label">Режиссёр</div>
+      <div class="detail-value">...</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Год</div>
+      <div class="detail-value">2025</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Жанр</div>
+      <div class="detail-value">Драма</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Хронометраж</div>
+      <div class="detail-value">...</div>
+    </div>
+  </div>
+  <div class="quote-block">
+    <blockquote>
+      Не дом выбирает человека, а человек — дом.
+      И каждый живёт в том, который заслужил.
+    </blockquote>
+  </div>
+  <div class="bottom-bar">
+    <span class="prod">✦ Студия Гефест ✦</span>
+    <span class="status">Скоро в прокате</span>
+  </div>
+</div>
+</body>
+</html>
