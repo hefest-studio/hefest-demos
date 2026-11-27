@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/cover.png" alt="hefest-demos" width="100%"></p>
+
 # hefest-demos — демо-витрина студии «Гефест»
 
 Живые демо-лендинги для показа заказчикам. Хостинг — Vercel (автодеплой из этого репо).
